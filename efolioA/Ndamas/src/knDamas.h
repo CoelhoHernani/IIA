@@ -1,8 +1,6 @@
 #pragma once
 #include "TProcuraConstrutiva.h"
 
-#include <vector>
-
 ///////////////////////////////////////////////////////////////////////////////
 //	knDamas class
 ///////////////////////////////////////////////////////////////////////////////
@@ -22,7 +20,7 @@ public:
 	knDamas(void);
 	~knDamas(void);
 
-	// posicao de cada dama
+	// posicao de cada dama 
 	TVector<int> damas;
 	// vetor que contem as posições do tabuleiro do jogo
 	TVector<TVector<int>> tabuleiro;
@@ -49,14 +47,16 @@ public:
 	// Escrever informacao de debug sobre o objecto currente
 	// (utilizar variavel TProcuraConstrutiva::debug para seleccionar o detalhe pretendido)
 	void Debug(void);
-	//verifica se os estado que se pretende criar é simetrico de algum existente
+	//verifica se os estado que se pretende criar é simetrico de algum existente ou se é duplicado
+	//ficou por otimizar, pois os metodos como estão, não estão a ser eficientes como queria
+	//mesmo num problema simples N=4 e k=2, estão a ser gerados muitos estados
 	bool verificarSimetriaHorizontal(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int linhaCorrente);
 	bool verificarSimetriaVertical(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int linhaCorrente);
 	bool verificarSimetriaDiagonal(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int linhaCorrente);
 	bool verificaDuplicado(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int linhaCorrente);
 	//verifica se a regra de k damas em linha coluna ou diagonal foi violada
 	bool verificarLinhaColunaDiagonal(knDamas* objeto, int linha, int coluna);
-
+	//faz a contagem das damas em linhas colunas e diagonais para fazer print
 	void contagemLinhaColunaDiagonal();
 
 };

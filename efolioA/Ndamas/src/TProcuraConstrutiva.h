@@ -110,6 +110,7 @@ protected:
 	void DebugPasso(int custo = 0);
 	// Chamar sempre que se quer uma nova linha com a arvore em baixo
 	void NovaLinha(bool tudo=true);
+	//surge na interface principal, permite utilizador escolher uma instancia predefinida 
 	void definirInstancia(instancia &vetor);
 
 public:

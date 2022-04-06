@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-
+//classe que cria um objeto inicializado com um vetor de instancias
 class instancia {
 public:
 	std::vector<std::vector<int>> instancias;

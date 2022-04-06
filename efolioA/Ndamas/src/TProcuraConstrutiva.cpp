@@ -422,13 +422,12 @@ Opcao:");
 				break;
 			case 0:
 				return;
-				break;
-			case 13: return;
 			default: printf("\nOpcao nao definida."); break;
 		}
 	}
 }
 
+//define um menu para utilizador escolher a instancia que pretende executar uma procura
 void TProcuraConstrutiva:: definirInstancia(instancia &v) {
 	char str[256];
 	printf("\n\
