@@ -1,0 +1,43 @@
+﻿  JogoDoGalo.cpp
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\JogoDoGalo.cpp(90,19): error C2039: 'Heuristica': is not a member of 'TProcuraAdversa'
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.h(18): message : see declaration of 'TProcuraAdversa'
+  Puzzle8.cpp
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\Puzzle8.cpp(86,23): error C2039: 'Heuristica': is not a member of 'TProcuraConstrutiva'
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraConstrutiva.h(17): message : see declaration of 'TProcuraConstrutiva'
+  TProcuraAdversa.cpp
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(21,17): error C3861: 'Heuristica': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(31,18): error C3861: 'Heuristica': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(64,17): error C3861: 'Heuristica': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(74,18): error C3861: 'Heuristica': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(156,40): error C3861: 'Heuristica': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(186,35): error C3861: 'Heuristica': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(195,57): error C2039: 'Heuristica': is not a member of 'TProcuraConstrutiva'
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraConstrutiva.h(17): message : see declaration of 'TProcuraConstrutiva'
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(195,15): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(195,15): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraAdversa.cpp(195,15): message : the missing variadic argument 1 is required by format string '%d'
+  TProcuraConstrutiva.cpp
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TVector.h(479,10): warning C4101: 'w': unreferenced local variable
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TVector.h(478): message : while compiling class template member function 'void TVector<int>::Insert(Item,int)'
+          with
+          [
+              Item=int
+          ]
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraConstrutiva.cpp(132): message : see reference to function template instantiation 'void TVector<int>::Insert(Item,int)' being compiled
+          with
+          [
+              Item=int
+          ]
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraConstrutiva.cpp(38): message : see reference to class template instantiation 'TVector<int>' being compiled
+  TProcuraMelhorativa.cpp
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraMelhorativa.cpp(192,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraMelhorativa.cpp(295,40): error C3861: 'Heuristica': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraMelhorativa.cpp(325,61): error C3861: 'MelhorPrimeiro': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraMelhorativa.cpp(334,52): error C3861: 'AStar': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraMelhorativa.cpp(353,35): error C3861: 'Heuristica': identifier not found
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraMelhorativa.cpp(362,57): error C2039: 'Heuristica': is not a member of 'TProcuraConstrutiva'
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraConstrutiva.h(17): message : see declaration of 'TProcuraConstrutiva'
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraMelhorativa.cpp(362,15): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraMelhorativa.cpp(362,15): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\Hernâni Coelho\github\IIA\AlgoritmosIIA_1718\TProcuraMelhorativa.cpp(362,15): message : the missing variadic argument 1 is required by format string '%d'
+  Generating Code...

@@ -1,0 +1,19 @@
+/tmp/cckB6fFz.o: In function `TVector<TProcuraConstrutiva*>::Last()':
+JogoDoGalo.cpp:(.text._ZN7TVectorIP19TProcuraConstrutivaE4LastEv[_ZN7TVectorIP19TProcuraConstrutivaE4LastEv]+0x32): undefined reference to `TVector<TProcuraConstrutiva*>::erro'
+/tmp/ccctgbRH.o: In function `TVector<int>::Last()':
+Particao.cpp:(.text._ZN7TVectorIiE4LastEv[_ZN7TVectorIiE4LastEv]+0x32): undefined reference to `TVector<int>::erro'
+/tmp/ccctgbRH.o: In function `TVector<int>::Pop()':
+Particao.cpp:(.text._ZN7TVectorIiE3PopEv[_ZN7TVectorIiE3PopEv]+0x3f): undefined reference to `TVector<int>::erro'
+/tmp/ccXvRztQ.o: In function `TVector<TProcuraConstrutiva*>::Random()':
+Puzzle8.cpp:(.text._ZN7TVectorIP19TProcuraConstrutivaE6RandomEv[_ZN7TVectorIP19TProcuraConstrutivaE6RandomEv]+0x41): undefined reference to `TVector<TProcuraConstrutiva*>::erro'
+/tmp/ccoscGXp.o: In function `TVector<unsigned char>::Last()':
+TProcuraAdversa.cpp:(.text._ZN7TVectorIhE4LastEv[_ZN7TVectorIhE4LastEv]+0x2e): undefined reference to `TVector<unsigned char>::erro'
+/tmp/ccSo2elz.o: In function `TVector<unsigned char>::Pop()':
+TProcuraConstrutiva.cpp:(.text._ZN7TVectorIhE3PopEv[_ZN7TVectorIhE3PopEv]+0x3b): undefined reference to `TVector<unsigned char>::erro'
+/tmp/ccnA7wo9.o: In function `TVector<TProcuraMelhorativa*>::Last()':
+TProcuraMelhorativa.cpp:(.text._ZN7TVectorIP19TProcuraMelhorativaE4LastEv[_ZN7TVectorIP19TProcuraMelhorativaE4LastEv]+0x32): undefined reference to `TVector<TProcuraMelhorativa*>::erro'
+/tmp/ccnA7wo9.o: In function `TVector<TProcuraMelhorativa*>::Pop()':
+TProcuraMelhorativa.cpp:(.text._ZN7TVectorIP19TProcuraMelhorativaE3PopEv[_ZN7TVectorIP19TProcuraMelhorativaE3PopEv]+0x3f): undefined reference to `TVector<TProcuraMelhorativa*>::erro'
+/tmp/ccnA7wo9.o: In function `TVector<int>::First()':
+TProcuraMelhorativa.cpp:(.text._ZN7TVectorIiE5FirstEv[_ZN7TVectorIiE5FirstEv]+0x1e): undefined reference to `TVector<int>::erro'
+collect2: error: ld returned 1 exit status
