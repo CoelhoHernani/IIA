@@ -1,7 +1,10 @@
 #include "TProcuraConstrutiva.h"
-#include <stdio.h>
 
-
+/////////////////////////////////////////////////////////////////////////////////////
+//	TProcuraConstrutiva class
+// 
+// Implementation file
+//////////////////////////////////////////////////////////////////////////////////////
 
 // nivel de debug: 0 - nada; 1 - actividade; 2 - passos; 3 - detalhe
 int TProcuraConstrutiva::debug=0;
@@ -182,7 +185,7 @@ int TProcuraConstrutiva::ProfundidadePrimeiro(int nivel)
 			TVector<int> custos;
 			Sucessores(sucessores, custos);
 			// tentar todos os sucessores, um de cada vez
-			for(int i=0;i<sucessores.Count();i++) {
+			for(int i= sucessores.Count()-1;i >= 0; i--) {			//Alteração para LIFO - last in first out
 				DebugExpansao(i,sucessores.Count());
 				int resultado=sucessores[i]->ProfundidadePrimeiro(nivel-1);
 				if(resultado>=0) { // este sucessor resolveu o problema, devolver
@@ -322,10 +325,9 @@ void TProcuraConstrutiva::LimparEstatisticas(void)
 void TProcuraConstrutiva::TesteManual(const char *nome, int seed)
 {
 	clock_t start, end;
-	instancia vetor;
+	instancia vetor;		//vetor que inicializa com as instancias
 	char str[256];
 	int limiteNivel=10;
-	TRand::srand(seed);
 	SolucaoVazia();
 	while(true) {
 		printf("\n\
@@ -352,7 +354,7 @@ Opcao:");
 				break;
 			case 2:
 				LimparEstatisticas();
-				TRand::srand(seed); SolucaoVazia();
+				SolucaoVazia();
 				break;
 			case 3:
 				LimparEstatisticas();

@@ -1,6 +1,15 @@
 #pragma once
-#include <iostream>
+#include <stdio.h>
 #include <vector>
+
+/////////////////////////////////////////////////////////////////////////////////
+//	instancia class
+//  
+//	Author: Hernani Coelho
+//  Created on: 07/04/2022
+//
+// declaration file
+////////////////////////////////////////////////////////////////////////////////
 
 //classe que cria um objeto inicializado com um vetor de instancias
 class instancia {

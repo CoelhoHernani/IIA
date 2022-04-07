@@ -1,5 +1,10 @@
 #include "knDamas.h"
-#include <iostream>
+
+/////////////////////////////////////////////////////////////////////////////////////
+//	knDamas class
+// 
+// Implementation file
+//////////////////////////////////////////////////////////////////////////////////////
 
 knDamas::knDamas(void)
 {
@@ -20,13 +25,15 @@ TProcuraConstrutiva* knDamas::Duplicar(void)
 	return clone;
 }
 
-void knDamas::Copiar(TProcuraConstrutiva* objecto) {
+void knDamas::Copiar(TProcuraConstrutiva* objecto) 
+{
 	tabuleiro = ((knDamas*)objecto)->tabuleiro;
 	damas = ((knDamas*)objecto)->damas;
 }
 
 //Coloca tabuleiro num estado inicial, vazio
-void knDamas::SolucaoVazia(void) {
+void knDamas::SolucaoVazia(void) 
+{
 	damas.Count(0);
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < n; j++)
@@ -46,23 +53,52 @@ void knDamas::Sucessores(TVector<TProcuraConstrutiva*>&sucessores, TVector<int>&
 			sucessor->damas.Add(j);
 			sucessor->tabuleiro[j][coluna] = 1;			//posição da dama no tabueleiro
 			if(verificaDuplicado(sucessores, sucessor, coluna) && verificarSimetriaVertical(sucessores, sucessor, coluna) && verificarSimetriaDiagonal(sucessores, sucessor, coluna) && verificarSimetriaHorizontal(sucessores, sucessor, coluna))
-				sucessores.Add(sucessor);				//adiciona sucessor(estado) à lista de sucessores se se verificar que não é simetrico 
+				sucessores.Add(sucessor);				//adiciona sucessor(estado) à lista de sucessores se se verificar que não é simetrico ou igual 
 		}
 	}
 	TProcuraConstrutiva::Sucessores(sucessores, custo);
 }
 
 //verifica se estado sucessor é igual a algum já existente na lista, se for retorna falso
-bool knDamas::verificaDuplicado(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int colunaCorrente) {
+bool knDamas::verificaDuplicado(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int colunaCorrente) 
+{
 	int flag = 0, count = 0;
 
 	for (int i = 0; i < sucessores.Count(); i++) {
 		flag = 0;
 		count = 0;
-		if (sucessor->damas.Count() == ((knDamas*)sucessores[i])->damas.Count())
+		for (int coluna = 0; coluna <= colunaCorrente; coluna++) {
+			for (int linha = 0; linha < n; linha++) {
+				if (sucessor->tabuleiro[linha][coluna] == ((knDamas*)sucessores[i])->tabuleiro[linha][coluna]) {
+					if (sucessor->tabuleiro[linha][coluna] == 1)
+						count++;
+				}
+				else {
+					flag = 1;
+					break;
+				}
+				if (count == sucessor->damas.Count())
+					return false;							//quer dizer que existe um estado igual
+			}
+			if (flag == 1)
+				break;
+		}
+	}
+	return true;
+}
+
+//verifica se sucessor é simetrico horizontal de algum na lista
+bool knDamas::verificarSimetriaHorizontal(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int colunaCorrente) 
+{
+	int flag = 0, count = 0;
+
+	if (sucessores.Count() >= 2) {
+		for (int i = 0; i < sucessores.Count(); i++) {
+			flag = 0;
+			count = 0;
 			for (int coluna = 0; coluna <= colunaCorrente; coluna++) {
 				for (int linha = 0; linha < n; linha++) {
-					if (sucessor->tabuleiro[linha][coluna] == ((knDamas*)sucessores[i])->tabuleiro[linha][coluna]) {
+					if (sucessor->tabuleiro[linha][coluna] == ((knDamas*)sucessores[i])->tabuleiro[linha][n - 1 - coluna]) {
 						if (sucessor->tabuleiro[linha][coluna] == 1)
 							count++;
 					}
@@ -76,96 +112,66 @@ bool knDamas::verificaDuplicado(TVector<TProcuraConstrutiva*>& sucessores, knDam
 				if (flag == 1)
 					break;
 			}
-	}
-	return true;
-}
-
-//verifica se sucessor é simetrico horizontal de algum na lista
-bool knDamas::verificarSimetriaHorizontal(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int colunaCorrente) {
-
-	int flag = 0, count = 0;
-
-	if (sucessores.Count() >= 2) {
-		for (int i = 0; i < sucessores.Count(); i++) {
-			flag = 0;
-			count = 0;
-			if (sucessor->damas.Count() == ((knDamas*)sucessores[i])->damas.Count())
-				for (int coluna = 0; coluna <= colunaCorrente; coluna++) {
-					for (int linha = 0; linha < n; linha++) {
-						if (sucessor->tabuleiro[linha][coluna] == ((knDamas*)sucessores[i])->tabuleiro[linha][n - 1 - coluna]) {
-							if (sucessor->tabuleiro[linha][coluna] == 1)
-								count++;
-						}
-						else {
-							flag = 1;
-							break;
-						}
-						if (count == sucessor->damas.Count())
-							return false;
-					}
-					if (flag == 1)
-						break;
-				}
 		}
 	}
 	return true;
 }
 
 //verifica se sucessor é simetrico vertical de algum existente na lista
-bool knDamas::verificarSimetriaVertical(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int colunaCorrente) {
+bool knDamas::verificarSimetriaVertical(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int colunaCorrente) 
+{
 	int flag = 0, count = 0;
 
 	if (sucessores.Count() >= 2) {
 		for (int i = 0; i < sucessores.Count(); i++) {
 			flag = 0;
 			count = 0;
-			if (sucessor->damas.Count() == ((knDamas*)sucessores[i])->damas.Count())
-				for (int coluna = 0; coluna <= colunaCorrente; coluna++) {
-					for (int linha = 0; linha < n; linha++) {
-						if (sucessor->tabuleiro[linha][coluna] == ((knDamas*)sucessores[i])->tabuleiro[n - 1 - linha][coluna]) {
-							if (sucessor->tabuleiro[linha][coluna] == 1)
-								count++;
-						}
-						else {
-							flag = 1;
-							break;
-						}
-						if (count == sucessor->damas.Count())
-							return false;
+			for (int coluna = 0; coluna <= colunaCorrente; coluna++) {
+				for (int linha = 0; linha < n; linha++) {
+					if (sucessor->tabuleiro[linha][coluna] == ((knDamas*)sucessores[i])->tabuleiro[n - 1 - linha][coluna]) {
+						if (sucessor->tabuleiro[linha][coluna] == 1)
+							count++;
 					}
-					if (flag == 1)
+					else {
+						flag = 1;
 						break;
+					}
+					if (count == sucessor->damas.Count())
+						return false;
 				}
+				if (flag == 1)
+					break;
+			}
 		}
 	}
 	return true;
 }
 
 //verifica se sucessor é simetrico diagonal de algum estado na lista
-bool knDamas::verificarSimetriaDiagonal(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int colunaCorrente) {
+bool knDamas::verificarSimetriaDiagonal(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int colunaCorrente) 
+{
 	int flag = 0, count = 0;
 
 	if (sucessores.Count() >= 2) {
 		for (int i = 0; i < sucessores.Count(); i++) {
 			flag = 0;
 			count = 0;
-			if (sucessor->damas.Count() == ((knDamas*)sucessores[i])->damas.Count())
-				for (int coluna = 0; coluna <= colunaCorrente; coluna++) {
-					for (int linha = 0; linha < n; linha++) {
-						if (sucessor->tabuleiro[linha][coluna] == ((knDamas*)sucessores[i])->tabuleiro[coluna][linha]) {
-							if (sucessor->tabuleiro[linha][coluna] == 1)
-								count++;
-						}
-						else {
-							flag = 1;
-							break;
-						}
-						if (count == sucessor->damas.Count())
-							return false;
+			for (int coluna = 0; coluna <= colunaCorrente; coluna++) {
+				for (int linha = 0; linha < n; linha++) {
+					if (sucessor->tabuleiro[linha][coluna] == ((knDamas*)sucessores[i])->tabuleiro[coluna][linha]) {
+						if (sucessor->tabuleiro[linha][coluna] == 1)
+							count++;
 					}
-					if (flag == 1)
+					else {
+						flag = 1;
 						break;
+					}
+					if (count == sucessor->damas.Count())
+						return false;
 				}
+				if (flag == 1)
+					break;
+			}
 		}
 	}
 	return true;
@@ -176,7 +182,7 @@ bool knDamas::verificarLinhaColunaDiagonal(knDamas* objeto, int linha, int colun
 {
 	if (coluna >= k) {
 		int count = 0;
-		//verificar em linha
+		//verificar em linha ate a posicao em que se esta
 		for (int i = 0; i < coluna; i++) {
 			if (objeto->tabuleiro[linha][i] == 1)
 				count++;
@@ -184,7 +190,7 @@ bool knDamas::verificarLinhaColunaDiagonal(knDamas* objeto, int linha, int colun
 				return false;
 		}
 		count = 0;
-		//verifica diagonais sentido NO e NE a partir da posicao que se esta
+		//verifica diagonais sentido NO a partir da posicao que se esta
 		for ( int i = linha-1, j = coluna-1; i >= 0 && j >= 0; i--, j--) {
 			if (objeto->tabuleiro[i][j] == 1)
 				count++;
@@ -192,6 +198,7 @@ bool knDamas::verificarLinhaColunaDiagonal(knDamas* objeto, int linha, int colun
 				return false;
 		}
 		count = 0;
+		//verifica diagonais sentido SO a partir da posicao que se esta
 		for (int i = linha+1, j = coluna-1; i <= n && j >= 0; i++, j--) {
 			if (objeto->tabuleiro[i][j] == 1)
 				count++;
@@ -210,7 +217,7 @@ void knDamas::Debug(void)
 	for(int i = 0; i<n; i++){
 		NovaLinha();
 		for (int j = 0; j < n; j++) {
-			if (tabuleiro[i][j] == 1)
+			if (tabuleiro[i][j] == 1)		//se posicao estiver marcada então é posicao da dama
 				printf("D");
 			else printf("+");
 		}
@@ -289,4 +296,13 @@ void knDamas::contagemLinhaColunaDiagonal()
 		count = 0;
 		diagonal++;
 	}
+}
+
+//verifica se se atingiu um estado objetivo
+bool knDamas::SolucaoCompleta(void) {
+	if (damas.Count() == k * n) {
+		printf("\nResultado: Solucao");
+		return true;
+	}
+	return false;
 }

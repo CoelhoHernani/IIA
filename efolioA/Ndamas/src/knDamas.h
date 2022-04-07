@@ -1,28 +1,34 @@
 #pragma once
 #include "TProcuraConstrutiva.h"
+#include <stdio.h>
 
-///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 //	knDamas class
-///////////////////////////////////////////////////////////////////////////////
-//	Author: Jose Coelho
-//	Last revision: 2007-09-06
-//	Description:
-//    Implementa o problema das oito damas. Este problema consiste em colocar
-//    oito damas de xadrez (movem-se na horizontal, vertical e diagonal), num
-//    tabuleiro de xadrez, sem que estas se ataquem umas as outras.
-///////////////////////////////////////////////////////////////////////////////
+// 
+//	Author: Hernani Coelho
+//  Created on: 07/04/2022
+//      
+//	- Reutilizacao dos algoritmos disponibilizados na unidade curricular introdução à inteligencia artificial:
+//	- Adaptacao ao problema knDamas, onde objetivo é colocar k*n damas num tabuleiro de dimensao n onde por linha
+//	  coluna ou diagonal não pode existir mais de k damas
+// 
+//	- Alteracao para adaptacao ao problema dos metodos Sucessores, SolucaoVazia, Debug 
+//	- Adicionado metodos verificarSimetriaHorizontal, verificarSimetriaVertical, verificarSimetriaDiagonal, 
+//	  verificaDuplicado, verificarLinhaColunaDiagonal, contagemLinhaColunaDiagonal
+// 
+// declaration file
+//////////////////////////////////////////////////////////////////////////////////////
+
 class knDamas : public TProcuraConstrutiva
 {
 
 public:
-	//Parametros do tabuleiro e numero de damas por linha/coluna/diagonal
-
 	knDamas(void);
 	~knDamas(void);
 
 	// posicao de cada dama 
 	TVector<int> damas;
-	// vetor que contem as posições do tabuleiro do jogo
+	// vetor 2D que contem as posições do tabuleiro do jogo
 	TVector<TVector<int>> tabuleiro;
 
 	// metodos redefinidos de TProcuraConstrutiva
@@ -37,22 +43,17 @@ public:
 	// O custo nao necessita de ser preenchido, caso seja sempre unitario
 	void Sucessores(TVector<TProcuraConstrutiva*>&sucessores, TVector<int>& custo);
 	// Retorna verdade caso o estado actual seja um estado objectivo
-	bool SolucaoCompleta(void) {
-		if (damas.Count() == k * n) {
-			printf("\nResultado: Solucao");
-			return true;
-		}
-		return false;
-	}
+	bool SolucaoCompleta(void);
 	// Escrever informacao de debug sobre o objecto currente
 	// (utilizar variavel TProcuraConstrutiva::debug para seleccionar o detalhe pretendido)
 	void Debug(void);
-	//verifica se os estado que se pretende criar é simetrico de algum existente ou se é duplicado
-	//ficou por otimizar, pois os metodos como estão, não estão a ser eficientes como queria
-	//mesmo num problema simples N=4 e k=2, estão a ser gerados muitos estados
+	//verifica se os estado que se pretende criar é simetrico na horizontal de algum sucessor no vetor
 	bool verificarSimetriaHorizontal(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int linhaCorrente);
+	//verifica se os estado que se pretende criar é simetrico na vertical de algum sucessor no vetor
 	bool verificarSimetriaVertical(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int linhaCorrente);
+	//verifica se os estado que se pretende criar é simetrico na diagonal de algum sucessor no vetor
 	bool verificarSimetriaDiagonal(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int linhaCorrente);
+	//verifica se os estado que se pretende criar é duplicado de algum sucessor no vetor
 	bool verificaDuplicado(TVector<TProcuraConstrutiva*>& sucessores, knDamas* sucessor, int linhaCorrente);
 	//verifica se a regra de k damas em linha coluna ou diagonal foi violada
 	bool verificarLinhaColunaDiagonal(knDamas* objeto, int linha, int coluna);

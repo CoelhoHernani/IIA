@@ -1,6 +1,6 @@
 #pragma once
 #include "TVector.h"
-#include <iostream>
+#include <stdio.h>
 #include <chrono>
 #include "instancias.h"
 
@@ -15,6 +15,23 @@
 //    a implementacao dos metodos virtuais para o problema em concreto.
 //    Esta classe assume que nao ha ciclos, utilizar TProcuraConstrutivaComCiclos
 //    caso tal nao seja verdade.
+////////////////////////////////////////////////////////////////////////////////
+//	Alterações:
+//  Author:	Hernani Coelho
+//		metodo testeManual:
+//			-	Modificacao para que a interface do utilizador apenas apresente metodos de procuras cegas,
+//				nao apresentando nada do que seja heuristico ou de procuras informadas
+//			-	Adicionado um cronometro para que assim que os metodos das procuras terminem, 
+//				seja apresentado o tempo de processamento em segundos
+//		metodo ProfundidadePrimeiro:
+//			- alteracao da condicao do ciclo (profundidade limitada/ normal), para que os sucessores sejam expandidos
+//			  no formato LIFO, ou seja, o ultimo a entra e o primeiro a ser expandido
+//	Adicões:
+//		metodo definirInstancia:
+//			- permite ao utilizador atraves da interface inicial
+//			  escolher uma instancia do problema que pretende efetuar as procuras cegas,
+//			  atraves desta escolha as variaveis n e k sao adaptadas.
+//		 
 ///////////////////////////////////////////////////////////////////////////////
 class TProcuraConstrutiva
 {
@@ -87,10 +104,8 @@ public:
 	// limite e o numero de estados gerados nao expandidos, que nao pode ultrapassar esse limite
 	// os que ultrapassarem sao deitados fora (se 0 este limite nao importa, podendo haver problemas de memoria)
 	int LarguraPrimeiro(int limite = 0);
-
 	// retorna o valor da solucao e coloca o caminho no vector, ou -1 caso nao encontre solucao
 	int CustoUniforme(int limite = 0);
-
 	// retorna o valor da solucao e coloca o caminho no vector, ou -1 caso nao encontre solucao
 	// caso o nivel=-1, e feita uma procura em profunidade normal
 	// caso o nivel>0, e feita uma procura em profundidade limitada
@@ -112,10 +127,10 @@ protected:
 	void NovaLinha(bool tudo=true);
 	//surge na interface principal, permite utilizador escolher uma instancia predefinida 
 	void definirInstancia(instancia &vetor);
-
-public:
 	// Chamar antes de iniciar uma procura
 	void LimparEstatisticas(void);
+
+public:
 	// Metodo para teste manual do objecto (chamadas aos algoritmos, construcao de uma solucao manual)
 	// Este metodo destina-se a testes preliminares, e deve ser redefinido apenas se forem definidos novos algoritmos
 	void TesteManual(const char *nome, int seed=1);

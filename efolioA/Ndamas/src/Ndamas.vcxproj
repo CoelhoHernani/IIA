@@ -99,15 +99,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="knDamas.cpp" />
-    <ClCompile Include="ProcuraEngine.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="TProcuraConstrutiva.cpp" />
-    <ClCompile Include="TRand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="instancias.h" />
     <ClInclude Include="knDamas.h" />
     <ClInclude Include="TProcuraConstrutiva.h" />
-    <ClInclude Include="TRand.h" />
     <ClInclude Include="TVector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

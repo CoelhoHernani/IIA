@@ -18,13 +18,10 @@
     <ClCompile Include="knDamas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProcuraEngine.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TProcuraConstrutiva.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TRand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,9 +33,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TVector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TRand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="instancias.h">
